@@ -1,0 +1,9 @@
+script/
+README.md
+deploy.sh
+exclude.txt
+.DS_Store
+.git
+.github
+.gitignore
+wp-thema/
