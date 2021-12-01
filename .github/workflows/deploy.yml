@@ -1,0 +1,19 @@
+	on:
+  push:
+    branches:
+      - master
+name: Deploy
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v1
+      with:
+        private-key: ${{ secrets.SSH_KEY }}
+        public-key: ${{ secrets.SSH_KEY_PUBLIC }}
+        name: id_xserver_rsa
+        known-hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: run deploy script
+      run: bash ./script/deploy.sh
